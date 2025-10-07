@@ -1,43 +1,28 @@
 import { useState, useEffect } from 'react';
+import type { PortfolioData } from '@shared/schema';
+import { getCommandOutput } from './CommandOutputs';
 
 interface TerminalOutputProps {
   command: string;
-  output: string;
+  data?: PortfolioData;
   'data-testid'?: string;
 }
 
-export function TerminalOutput({ command, output, 'data-testid': testId }: TerminalOutputProps) {
-  const [displayedOutput, setDisplayedOutput] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
+export function TerminalOutput({ command, data, 'data-testid': testId }: TerminalOutputProps) {
+  const [showOutput, setShowOutput] = useState(false);
 
   useEffect(() => {
-    let currentIndex = 0;
-    setDisplayedOutput('');
-    setIsTyping(true);
+    const timer = setTimeout(() => {
+      setShowOutput(true);
+    }, 100);
 
-    const typingSpeed = 10;
-    const interval = setInterval(() => {
-      if (currentIndex < output.length) {
-        setDisplayedOutput(output.slice(0, currentIndex + 1));
-        currentIndex++;
-      } else {
-        setIsTyping(false);
-        clearInterval(interval);
-      }
-    }, typingSpeed);
+    return () => clearTimeout(timer);
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [output]);
-
-  const handleClick = () => {
-    if (isTyping) {
-      setDisplayedOutput(output);
-      setIsTyping(false);
-    }
-  };
+  const output = getCommandOutput(command, data);
 
   return (
-    <div className="space-y-2" data-testid={testId} onClick={handleClick}>
+    <div className="space-y-2" data-testid={testId}>
       <div className="flex items-center gap-2">
         <span className="text-primary/70 font-semibold text-sm sm:text-base" data-testid="output-prompt">
           user@portfolio:~$
@@ -46,11 +31,14 @@ export function TerminalOutput({ command, output, 'data-testid': testId }: Termi
           {command}
         </span>
       </div>
-      <div 
-        className="pl-0 sm:pl-4 text-foreground text-sm sm:text-base whitespace-pre-wrap font-mono leading-relaxed"
-        dangerouslySetInnerHTML={{ __html: displayedOutput }}
-        data-testid="output-content"
-      />
+      {showOutput && (
+        <div 
+          className="pl-0 sm:pl-4 text-foreground text-sm sm:text-base font-mono leading-relaxed animate-in fade-in duration-200"
+          data-testid="output-content"
+        >
+          {output}
+        </div>
+      )}
     </div>
   );
 }

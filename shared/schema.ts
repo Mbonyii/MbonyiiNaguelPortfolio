@@ -95,6 +95,5 @@ export type CommandName =
 
 export interface CommandHistory {
   command: string;
-  output: string;
   timestamp: Date;
 }

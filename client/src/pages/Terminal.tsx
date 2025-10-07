@@ -1,11 +1,9 @@
 import { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { type CommandHistory, type PortfolioData } from '@shared/schema';
-import { Card3D } from '@/components/Card3D';
 import { TerminalOutput } from '@/components/TerminalOutput';
 import { TerminalInput } from '@/components/TerminalInput';
 import { WelcomeMessage } from '@/components/WelcomeMessage';
-import { getCommandOutput } from '@/lib/commands';
 
 export default function Terminal() {
   const [history, setHistory] = useState<CommandHistory[]>([]);
@@ -39,12 +37,9 @@ export default function Terminal() {
       setCurrentCommand('');
       return;
     }
-
-    const output = getCommandOutput(trimmedCommand, portfolioData);
     
     const newHistoryEntry: CommandHistory = {
       command: trimmedCommand,
-      output,
       timestamp: new Date(),
     };
 
@@ -103,7 +98,7 @@ export default function Terminal() {
             <TerminalOutput 
               key={index} 
               command={entry.command} 
-              output={entry.output}
+              data={portfolioData}
               data-testid={`terminal-output-${index}`}
             />
           ))}
