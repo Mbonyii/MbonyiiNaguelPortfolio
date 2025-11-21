@@ -132,76 +132,83 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  --background: 220 20% 8%;
+  /* Kali Linux inspired dark blue-black background */
+  --background: 220 18% 9%;
 
-  --foreground: 0 0% 90%;
+  /* High contrast text */
+  --foreground: 0 0% 96%;
 
-  --border: 220 20% 18%;
+  --border: 220 20% 20%;
 
-  --card: 220 20% 10%;
+  /* Cards with blue tint */
+  --card: 220 18% 11%;
 
-  --card-foreground: 0 0% 90%;
+  --card-foreground: 0 0% 96%;
 
-  --card-border: 220 20% 16%;
+  --card-border: 220 20% 18%;
 
-  --sidebar: 220 20% 12%;
+  --sidebar: 220 18% 13%;
 
-  --sidebar-foreground: 0 0% 90%;
+  --sidebar-foreground: 0 0% 96%;
 
-  --sidebar-border: 220 20% 20%;
+  --sidebar-border: 220 20% 22%;
 
-  --sidebar-primary: 142 70% 55%;
+  /* Kali blue primary color */
+  --sidebar-primary: 200 80% 55%;
 
-  --sidebar-primary-foreground: 142 70% 10%;
+  --sidebar-primary-foreground: 200 80% 10%;
 
-  --sidebar-accent: 220 15% 18%;
+  --sidebar-accent: 220 20% 20%;
 
-  --sidebar-accent-foreground: 0 0% 95%;
+  --sidebar-accent-foreground: 0 0% 96%;
 
-  --sidebar-ring: 173 80% 50%;
+  --sidebar-ring: 200 85% 60%;
 
-  --popover: 220 20% 15%;
+  --popover: 220 18% 15%;
 
-  --popover-foreground: 0 0% 90%;
+  --popover-foreground: 0 0% 96%;
 
-  --popover-border: 220 20% 22%;
+  --popover-border: 220 20% 24%;
 
-  --primary: 142 70% 55%;
+  /* Kali Linux classic cyan-blue */
+  --primary: 200 85% 52%;
 
-  --primary-foreground: 142 70% 10%;
+  --primary-foreground: 200 85% 8%;
 
-  --secondary: 220 15% 20%;
+  --secondary: 220 20% 22%;
 
-  --secondary-foreground: 0 0% 95%;
+  --secondary-foreground: 0 0% 96%;
 
-  --muted: 220 15% 18%;
+  /* Better muted text visibility with blue tint */
+  --muted: 220 15% 20%;
 
-  --muted-foreground: 0 0% 60%;
+  --muted-foreground: 0 0% 76%;
 
-  --accent: 173 20% 20%;
+  /* Blue accent color */
+  --accent: 200 40% 25%;
 
-  --accent-foreground: 173 80% 85%;
+  --accent-foreground: 200 70% 88%;
 
   --destructive: 0 70% 60%;
 
   --destructive-foreground: 0 70% 10%;
 
-  --input: 220 20% 35%;
-  --ring: 173 80% 50%;
-  --chart-1: 142 65% 60%;
-  --chart-2: 173 80% 50%;
-  --chart-3: 220 70% 65%;
-  --chart-4: 280 65% 70%;
-  --chart-5: 30 80% 65%;
+  --input: 220 20% 38%;
+  --ring: 200 85% 60%;
+  --chart-1: 200 80% 58%;
+  --chart-2: 210 75% 55%;
+  --chart-3: 220 70% 62%;
+  --chart-4: 230 65% 68%;
+  --chart-5: 190 75% 60%;
 
-  --shadow-2xs: 0px 1px 2px 0px hsl(142 70% 55% / 0.08);
-  --shadow-xs: 0px 1px 3px 0px hsl(142 70% 55% / 0.12);
-  --shadow-sm: 0px 2px 4px -1px hsl(142 70% 55% / 0.10), 0px 1px 2px -1px hsl(142 70% 55% / 0.15);
-  --shadow: 0px 4px 6px -1px hsl(142 70% 55% / 0.12), 0px 2px 4px -2px hsl(142 70% 55% / 0.15);
-  --shadow-md: 0px 6px 12px -2px hsl(142 70% 55% / 0.15), 0px 3px 6px -3px hsl(142 70% 55% / 0.15);
-  --shadow-lg: 0px 10px 20px -4px hsl(142 70% 55% / 0.18), 0px 4px 8px -4px hsl(142 70% 55% / 0.12);
-  --shadow-xl: 0px 20px 30px -6px hsl(142 70% 55% / 0.22), 0px 8px 12px -6px hsl(142 70% 55% / 0.15);
-  --shadow-2xl: 0px 25px 50px -12px hsl(142 70% 55% / 0.28);
+  --shadow-2xs: 0px 1px 2px 0px hsl(200 85% 52% / 0.08);
+  --shadow-xs: 0px 1px 3px 0px hsl(200 85% 52% / 0.12);
+  --shadow-sm: 0px 2px 4px -1px hsl(200 85% 52% / 0.10), 0px 1px 2px -1px hsl(200 85% 52% / 0.15);
+  --shadow: 0px 4px 6px -1px hsl(200 85% 52% / 0.12), 0px 2px 4px -2px hsl(200 85% 52% / 0.15);
+  --shadow-md: 0px 6px 12px -2px hsl(200 85% 52% / 0.15), 0px 3px 6px -3px hsl(200 85% 52% / 0.15);
+  --shadow-lg: 0px 10px 20px -4px hsl(200 85% 52% / 0.18), 0px 4px 8px -4px hsl(200 85% 52% / 0.12);
+  --shadow-xl: 0px 20px 30px -6px hsl(200 85% 52% / 0.22), 0px 8px 12px -6px hsl(200 85% 52% / 0.15);
+  --shadow-2xl: 0px 25px 50px -12px hsl(200 85% 52% / 0.28);
 
 }
 
@@ -211,7 +218,25 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
+    /* Dark, user-friendly gradient background with subtle color wash */
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(1200px 800px at 15% -10%, hsl(var(--primary) / 0.06), transparent),
+      radial-gradient(900px 700px at 110% 0%, hsl(var(--accent) / 0.08), transparent),
+      linear-gradient(to bottom, hsl(var(--background)), hsl(var(--background)));
+    background-attachment: fixed, fixed, fixed;
+    background-repeat: no-repeat;
+  }
+  
+  /* Soft vignette to focus content (very subtle) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(1200px 800px at 50% 40%, transparent 0%, transparent 60%, hsl(0 0% 0% / 0.25) 100%);
+    z-index: 0;
   }
 }
 

@@ -57,6 +57,7 @@ export const aboutSchema = z.object({
   linkedin: z.string().optional(),
   github: z.string().optional(),
   website: z.string().optional(),
+  photo: z.string().optional(),
 });
 
 export const portfolioDataSchema = z.object({

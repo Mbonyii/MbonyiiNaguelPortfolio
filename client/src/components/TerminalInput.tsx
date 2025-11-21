@@ -12,7 +12,7 @@ export function TerminalInput({ value, onChange, onKeyDown, inputRef, 'data-test
   return (
     <div className="flex items-center gap-2 group" data-testid={testId}>
       <span className="text-primary font-semibold text-sm sm:text-base whitespace-nowrap" data-testid="terminal-prompt">
-        user@portfolio:~$
+        mbonyii@portfolio:~$
       </span>
       <div className="flex-1 relative">
         <input
@@ -24,9 +24,10 @@ export function TerminalInput({ value, onChange, onKeyDown, inputRef, 'data-test
           className="w-full bg-transparent border-none outline-none text-primary font-mono text-sm sm:text-base caret-primary focus:ring-0"
           autoComplete="off"
           spellCheck="false"
+          aria-label="Enter command"
           data-testid="input-command"
         />
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-4 bg-primary animate-pulse" data-testid="cursor-blink" />
+        <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 w-2 h-4 bg-primary/70 animate-pulse" data-testid="cursor-blink" />
       </div>
     </div>
   );

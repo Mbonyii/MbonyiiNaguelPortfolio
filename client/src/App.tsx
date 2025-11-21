@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Terminal from "@/pages/Terminal";
 import NotFound from "@/pages/not-found";
+import { ThemeProvider } from "next-themes";
 
 function Router() {
   return (
@@ -18,10 +19,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

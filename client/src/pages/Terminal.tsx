@@ -4,6 +4,7 @@ import { type CommandHistory, type PortfolioData } from '@shared/schema';
 import { TerminalOutput } from '@/components/TerminalOutput';
 import { TerminalInput } from '@/components/TerminalInput';
 import { WelcomeMessage } from '@/components/WelcomeMessage';
+import { useToast } from '@/hooks/use-toast';
 
 export default function Terminal() {
   const [history, setHistory] = useState<CommandHistory[]>([]);
@@ -14,9 +15,23 @@ export default function Terminal() {
   const terminalEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { data: portfolioData } = useQuery<PortfolioData>({
-    queryKey: ['/api/portfolio'],
+  const { toast } = useToast();
+
+  const { data: portfolioData, isLoading, isError, error } = useQuery<PortfolioData>({
+    queryKey: ['/api/v1/portfolio'],
+    staleTime: 0,
+    refetchOnMount: 'always',
   });
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: 'Failed to load data',
+        description: (error as Error)?.message ?? 'Please try again later.',
+        variant: 'destructive',
+      });
+    }
+  }, [isError, error, toast]);
 
   useEffect(() => {
     terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -33,8 +48,15 @@ export default function Terminal() {
 
     if (trimmedCommand === 'clear') {
       setHistory([]);
-      setShowWelcome(false);
+      setCommandHistory([]);
+      setShowWelcome(true);
       setCurrentCommand('');
+      setHistoryIndex(-1);
+      // Scroll to top smoothly
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        inputRef.current?.focus();
+      }, 100);
       return;
     }
     
@@ -91,14 +113,34 @@ export default function Terminal() {
       data-testid="terminal-container"
     >
       <div className="max-w-6xl mx-auto">
-        {showWelcome && <WelcomeMessage />}
+        <WelcomeMessage 
+          data={portfolioData} 
+          hideIntro={!showWelcome} 
+          onCommandClick={(cmd) => {
+            setCurrentCommand(cmd);
+            setTimeout(() => {
+              inputRef.current?.focus();
+              // Optionally auto-execute on click
+              // handleCommand(cmd);
+            }, 50);
+          }}
+        />
+
+        {isLoading && (
+          <div className="mb-6 space-y-2 animate-in fade-in duration-500" aria-live="polite" aria-busy="true">
+            <div className="h-4 w-40 bg-gradient-to-r from-primary/10 via-primary/20 to-primary/10 rounded bg-[length:200%_100%] animate-shimmer" />
+            <div className="h-3 w-full bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded bg-[length:200%_100%] animate-shimmer" />
+            <div className="h-3 w-5/6 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 rounded bg-[length:200%_100%] animate-shimmer" />
+          </div>
+        )}
         
         <div className="space-y-4 mb-6">
           {history.map((entry, index) => (
             <TerminalOutput 
-              key={index} 
+              key={`${entry.command}-${entry.timestamp.getTime()}-${index}`}
               command={entry.command} 
               data={portfolioData}
+              index={index}
               data-testid={`terminal-output-${index}`}
             />
           ))}

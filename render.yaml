@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: mbonyii-portfolio-api
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      # Update CORS_ORIGIN after deploying frontend to Vercel
+      # Format: https://your-portfolio.vercel.app
+      - key: CORS_ORIGIN
+        value: "*"
+    healthCheckPath: /healthz
