@@ -2,7 +2,7 @@ services:
   - type: web
     name: mbonyii-portfolio-api
     env: node
-    buildCommand: env NODE_ENV=development npm install && npm run build
+    buildCommand: env NODE_ENV=development npm install && chmod +x node_modules/.bin/* 2>/dev/null; npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
