@@ -59,7 +59,7 @@ Use these settings:
 | **Region** | Choose closest to you (e.g., `Oregon (US West)`) |
 | **Branch** | `main` |
 | **Root Directory** | *(leave empty - uses root)* |
-| **Build Command** | `npm install && npm run build` |
+| **Build Command** | `env NODE_ENV=development npm install && npm run build` |
 | **Start Command** | `npm start` |
 
 ### 2.3 Set Environment Variables
