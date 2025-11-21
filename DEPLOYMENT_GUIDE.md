@@ -207,6 +207,16 @@ https://your-portfolio.vercel.app,https://your-custom-domain.com
 3. Check `PORT` environment variable (Render sets this automatically)
 4. Ensure `dist/index.js` exists after build
 
+### Build fails with "husky: not found" or "vite: not found"
+
+**Symptoms:** Build fails during `npm install` or `npm run build`
+
+**Solutions:**
+1. ✅ **Fixed in latest code** - The `prepare` script now handles missing husky gracefully
+2. Ensure Render is installing devDependencies (they're needed for build)
+3. Verify build command in Render: `npm ci || npm install && npm run build`
+4. Check that `vite` and `esbuild` are in `devDependencies` in `package.json`
+
 ### Build fails on Vercel
 
 **Symptoms:** Vercel deployment fails
